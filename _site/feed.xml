@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2026-01-08T00:11:56-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Sam Christian</title><subtitle>personal website for Sam Christian</subtitle><entry><title type="html">Tachyon Condensation</title><link href="http://localhost:4000/blog/2026/01/02/tachyon-condensation/" rel="alternate" type="text/html" title="Tachyon Condensation" /><published>2026-01-02T00:00:00-05:00</published><updated>2026-01-02T00:00:00-05:00</updated><id>http://localhost:4000/blog/2026/01/02/tachyon-condensation</id><content type="html" xml:base="http://localhost:4000/blog/2026/01/02/tachyon-condensation/"><![CDATA[<ul id="markdown-toc">
+  <li><a href="#preface" id="markdown-toc-preface">Preface</a></li>
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#open-string-field-theory" id="markdown-toc-open-string-field-theory">Open string field theory</a>    <ul>
+      <li><a href="#definition" id="markdown-toc-definition">Definition</a></li>
+      <li><a href="#reproduction-of-the-4-point-tree-level-amplitude" id="markdown-toc-reproduction-of-the-4-point-tree-level-amplitude">Reproduction of the 4-point tree-level amplitude</a></li>
+      <li><a href="#strebel-decomposition" id="markdown-toc-strebel-decomposition">Strebel decomposition</a></li>
+      <li><a href="#equations-of-motion-and-star-product" id="markdown-toc-equations-of-motion-and-star-product">Equations of motion and star product</a></li>
+    </ul>
+  </li>
+  <li><a href="#tachyon-condensation" id="markdown-toc-tachyon-condensation">Tachyon condensation</a>    <ul>
+      <li><a href="#wedge-states" id="markdown-toc-wedge-states">Wedge states</a></li>
+      <li><a href="#explicit-formulae" id="markdown-toc-explicit-formulae">Explicit formulae</a></li>
+      <li><a href="#the-identity-operator" id="markdown-toc-the-identity-operator">The identity operator</a></li>
+      <li><a href="#sliver-frame" id="markdown-toc-sliver-frame">Sliver frame</a></li>
+      <li><a href="#kbc-algebra" id="markdown-toc-kbc-algebra">$KBC$ algebra</a></li>
+      <li><a href="#computation-of-tachyon-vacuum" id="markdown-toc-computation-of-tachyon-vacuum">Computation of tachyon vacuum</a></li>
+      <li><a href="#cohomology-around-vacuum" id="markdown-toc-cohomology-around-vacuum">Cohomology around vacuum</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="preface">Preface</h2>
+<p>This post was originally written as my final project for Xi Yin’s string theory class in fall 2025. I have made few modifications in this version, but might come back to do so later.</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The goal of this post is to describe the non-perturbative behavior of D-branes in critical bosonic string theory. Heuristically, one might expect D$p$-branes to decay in bosonic string theory because they carry no conserved charge, unlike BPS D-branes in type II superstring theory. From the point of view of the open string excitations on the D-brane, the decay is reflected in the instability of the tachyon effective potential of which the D-brane configuration is a local maximum. To analyze the end-point of D-brane decay, one should look for a local minimum in the effective potential, computed through the quantum effective action divided by spacetime volume:</p>
+
+\[\begin{align}
+\label{eq:test}
+V(\phi_0) = -\frac{\Gamma(\phi_0)}{V_{st}},
+\end{align}\]
+
+<p>where $\phi_0$ is a static field configuration and $V_{st}$ is the volume of spacetime. Consequently, the problem of tachyon condensation reduces to finding a local minimum of this potential. What we will find is at this end-point of the condensation, the value of the effective potential exactly cancels the D-brane energy, implying that the D-brane has completely decayed. In addition, the $Q_B$-cohomology around this new vacuum is trivial, implying there are no open strings, giving further evidence to this interpretation.</p>
+
+<p>This is not possible to do in on-shell string theory, where one cannot define string states that take arbitrary profiles. In such a formalism, one cannot formulate static field configurations $\phi_0$. In order to make progress, we need a spacetime quantum field theory which recovers string scattering amplitudes. In other words, we need a formulation of open string field theory. The general formulation of open string field theory will be developed in <a href="#open-string-field-theory">Open string field theory</a>. In section <a href="#tachyon-condensation">Tachyon condensation</a>, the field configuration $\phi_0$ that is a local minimum of the effective potential will be discussed.</p>
+
+<p>When it comes down to it, the non-trivial content of the tachyon condensate vacuum (beyond guessing its form, of course) is the definition of the set of states that act naturally in the open string field theory framework. The action of these states is most easily seen visually, so the reader is encouraged to take a look at all the figures.</p>
+
+<h2 id="open-string-field-theory">Open string field theory</h2>
+
+<h3 id="definition">Definition</h3>
+
+<p>In this section, I will present a spacetime field theory action for open strings. Ignoring the quantization of the theory, I will show that the tree-level Feynman diagrams of this theory reproduce genus-zero (tree-level) string theory amplitudes. First of all, define the Hilbert space of fields $\Psi$ to be</p>
+
+\[\begin{align}
+|\Psi\rangle
+&amp;=\sum_I\int \frac{d^{26}k}{(2\pi)^{26}}
+\left[\psi_I(k)|\phi_I,k\rangle+\psi_I^\ddagger(k)|\phi_I^\ddagger,k\rangle\right].
+\end{align}\]
+
+<p>where $\lvert\phi_I,k\rangle$ is a basis of the matter+ghost CFT of ghost number $N_{gh}\leq 1$, denoted as $\mathcal{H}_{-}$ and $\lvert\phi_I^\ddagger,k\rangle$ is a basis of the matter+ghost CFT of ghost number $N_{gh}\geq 2$.</p>
+
+\[\begin{align}
+\langle \langle \phi^{I,\ddagger},k|\phi_J,k'\rangle
+&amp;=\delta^I_J\,\delta^{26}(k-k'),
+\qquad
+\sum_I\int \frac{d^{26}k}{(2\pi)^{26}}|\phi_I,k\rangle\langle\!\langle \phi_I,k|
+=I_{\mathcal{H}_-},
+\end{align}\]
+
+<p>and analogous relations for swapping $\phi\leftrightarrow \phi^\ddagger$, where $\langle\!\langle$ represents BPZ conjugation on the disc, defined via the inversion map $z\mapsto -1/z$ on the upper half plane (or $u\mapsto -u$ on the disk). From the target space point of view, $\psi(k)$ is the spacetime field. $\lvert\Psi\rangle$ is defined to have overall odd Grassmann parity. For a given $\lvert\phi_I,k\rangle$, the corresponding $\lvert\phi_I^\ddagger,k\rangle$ must have opposite Grassmann parity.</p>
+
+<p><a id="fig-wedge-map"></a></p>
+
+<p><img src="/assets/img/wedge_map.svg" alt="Wedge map figure" /></p>
+
+<p><em>Left: Local coordinate disc defining the string field, as used in the plumbing construction. Right: Image under $f_1 = h^{-1} \circ R_1 \circ h$ with $R_1(w) = w^{2/3}$.</em></p>
+
+<p>The open string field theory action is defined as</p>
+
+\[\begin{align}
+S[\Psi] &amp;= \frac{1}{2}\langle\!\langle \Psi \lvert Q_B \rvert \Psi \rangle
+          + \frac{1}{3}\{\Psi^{\otimes 3}\},\\
+\{\Psi^{\otimes 3}\} &amp;\equiv
+\bigg\langle e^{\mathcal{B}}\prod_{i=1}^3 [\Psi_i(0)]^{f_i} \bigg\rangle,
+\end{align}\]
+
+<p>with $z=f_j(w),\; j\in{0,1,2}$ defined as the coordinate map that maps the upper-plane half-disc $w$ to the wedge on the disc with angle $2\pi/3$ and centerpoint angle $\frac{2\pi}{3}j$.</p>
+
+<p>The components of this action deserve explaining. First of all, the $1/3$ is present (versus $1/3!$) because there are two inequivalent orderings of $\Psi^{\otimes 3}$ under $PSL(2,\mathbb{R})$ transformations. Second of all, we are considering the classical theory. Consequently, although we had previously made the identification of fields as an arbitrary expansion of basis states in the matter+ghost CFT, the observation that $Q_B$ has ghost number one and that the ghost number anomaly on the disc is $3$ implies that the only fields that have non-vanishing action are those that have ghost number $1$. Consequently, one can restrict the definition of string states to be those of ghost number $1$ for the classical action and any classical calculation (loop diagrams can have internal lines with ghost number not equal to $1$).</p>
+
+<p>For bosonic string theory, the computation of loop diagrams beyond tree-level is meaningless in perturbation theory around the local maximum in the effective potential. One should instead expand around the endpoint of tachyon condensation, but as has been alluded to, there are no open strings around that vacuum anyways. So the classical action will suffice.</p>
+
+<h3 id="reproduction-of-the-4-point-tree-level-amplitude">Reproduction of the 4-point tree-level amplitude</h3>
+
+<p>One can reproduce tree-level amplitudes by calculating tree-level Feynman diagrams of the spacetime field theory we have defined. The propagator for the theory is the inverse of the kinetic term. The kinetic term $\langle \!\langle \Psi \lvert Q_B \rvert \Psi \rangle$ contains singularities, which at the level of the BV quantization procedure are due to the necessity of choosing a gauge condition.</p>
+
+<p>In our case, we will choose the Siegel gauge condition $b_0\lvert\Psi\rangle=0$. The projector onto the Siegel gauge condition is $P=b_0c_0$. The kinetic term in Siegel gauge is equal to</p>
+
+\[\begin{align}
+\frac{1}{2}\langle\!\langle \Psi \lvert c_0 b_0 Q_B \rvert \Psi \rangle
+&amp;=\frac{1}{2}\langle\!\langle \Psi \lvert c_0 L_0 \rvert \Psi \rangle.
+\end{align}\]
+
+<p>For the classical action with $\Psi$ a state of ghost number $1$, following the usual perturbation theory procedure the propagator is given by the inverse of the matrix $A_{IJ}=\langle\!\langle \phi_I,k \lvert c_0L_0 \rvert \phi_J,k’ \rangle$. The inverse is</p>
+
+\[\begin{align}
+(2\pi)^{26}\delta^{26}(k-k')P_{IJ}
+&amp;=\langle\!\langle \phi_I^\ddagger,k \big\lvert \frac{b_0}{L_0} \big\rvert \phi_J^\ddagger,k' \rangle,
+\end{align}\]
+
+<p>where $P_{IJ}$ functions as the propagator for the theory (the momentum $\delta$-function comes from the matter correlator as computed in problem sets). The interaction vertex can be derived trivially by similarly stripping off an overall momentum $\delta$-function:</p>
+
+\[\begin{align}
+(2\pi)^{26}\delta^{26}(k_1+k_2+k_3)V_{IJK}(k_1,k_2,k_3)
+&amp;=\{\Psi_{I}(k_1)\otimes \Psi_{J}(k_2)\otimes \Psi_{K}(k_3)\}.
+\end{align}\]
+
+<p>The tree-level s-channel Feynman diagram for the four-point vertex for external states $\psi_1(k_1),\psi_2(k_2)\to \psi_3(k_3),\psi_4(k_4)$ can be constructed as</p>
+
+\[\begin{align}
+\sum_{K,L} V_{12K}P_{KL}V_{L34}
+&amp;=\sum_{K,L}\int \frac{d^{26}(k,k')}{(2\pi)^{52}}
+\{\Psi_1(k_1)\otimes \Psi_2(k_2)\otimes \Psi_K(k)\}\\
+&amp;\quad\times
+\langle\!\langle \phi_K^\ddagger,k \big\lvert \frac{b_0}{L_0} \big\rvert \phi_J^\ddagger,k' \rangle
+\{\Psi_J(k')\otimes \Psi_3(k_3)\otimes \Psi_4(k_4)\}\\
+&amp;=\sum_{K,L}\int \frac{d^{26}(k,k')}{(2\pi)^{52}}
+\mathcal{A}(\phi_1(k_1),\phi_2(k_2),\phi_K(k))\\
+&amp;\quad\times
+\langle\!\langle \phi_K^\ddagger,k \big\lvert \frac{b_0}{L_0} \big\rvert \phi_J^\ddagger,k' \rangle
+\mathcal{A}(\phi_J(k'),\phi_3(k_3),\phi_4(k_4))\\
+&amp;=\langle\!\langle S_2 \big\lvert \frac{b_0}{L_0} \big\rvert S_1\rangle.
+\end{align}\]
+
+<p>In the last line, the surface state $S_2$ is defined as the correlation function with $\phi_1,\phi_2$ insertion on $D^2\backslash W_3$, where $W_3$ is the wedge of angle $\frac{2\pi}{3}$ on which the function $f_3$ is defined, and similarly for $S_1$. This is nothing but the result obtained by integrating the plumbing of the local half-discs coordinate systems $w_1,w_2$ together via</p>
+
+\[\begin{align}
+w_1&amp;=-\frac{q}{w_2},\qquad 0&lt; q\leq 1.
+\end{align}\]
+
+<p>To prove that this gives a complete cover of the moduli space is surprisingly quite involved, without the mathematical procedure in the next section. In the four punctures case, this would involve proving the existence of a 1-1 map between cross ratio $t$ and plumbing parameter $q$. Doing so explicitly is surprisingly difficult, for reasons I don’t completely understand. Apparently such a map is given explicitly in appendix A of <code class="language-plaintext highlighter-rouge">hep-th/0207132</code> but I haven’t looked into it too much.</p>
+
+<h3 id="strebel-decomposition">Strebel decomposition</h3>
+
+<p>The above analysis of the coordinate maps hides the underlying elegance of the construction. Using a convenient strip parameterization, the decomposition of the moduli space into plumbing of cubic vertices becomes completely manifest.</p>
+
+<p>The mathematical formulation necessary is that of Strebel differentials. For $n\geq 2$ punctures on one boundary component, any genus $g$ Riemann surface along with a specification of $\vec{a}\in\mathbb{R}_+^{\,n}$ numbers admits a unique holomorphic differential $\varphi(z)\,dz^2$. Define a horizontal trajectory $z=\gamma(t),\; t\in[0,1]$ with respect to $\varphi(z)\,dz^2$ as any curve for which $\varphi(\gamma(t))\left(\frac{d\gamma}{dt}\right)^2$ is greater than zero for all $t$ (the intuition is that horizontal trajectories are literally horizontal with respect to the metric $dz^2$). The unique $\varphi(z)$ has the following properties (one can deduce these properties from applying the doubling trick to the surface and studying the properties of the Strebel differential on the corresponding Riemann surface without boundary which is extensively studied in the math literature):</p>
+
+<p>The unique $\varphi(z)$ has the following properties:</p>
+
+<ol>
+  <li>$\varphi(z)$ is holomorphic on $H/{z_i}$, i.e. everywhere except the boundary punctures.</li>
+  <li>For every boundary puncture $z_i$, $\varphi(z)$ has a $\frac{1}{z^2}$ singularity.</li>
+  <li>The surface minus the boundary punctures is foliated by the set of all horizontal trajectories induced by $\varphi(z)$.</li>
+  <li>$\varphi(z)$ has $n-2$ zeroes (for genus $0$, but this condition can be generalized to genus $g$).</li>
+  <li>The set of horizontal curves that do not begin and end at the boundary is measure zero (a horizontal curve that doesn’t end on the boundary ends on a zero of the differential).</li>
+  <li>The integral along the horizontal curves that encircle the point $z_i$ is equal to $a_i=\int_{\gamma}\sqrt{\varphi(z)}\,dz$, the positive number defined in the specification of $\varphi(z)$.</li>
+</ol>
+
+<p></p>
+<p>It is a typical convention to choose all $a_i$ to be $\pi$. If one included the condition that horizontal trajectories that begin and end on the boundary enclose one of the punctures, one would have the Strebel differential. Instead, one has a generalization, a Jenkins–Strebel differential. This confused me for a long time, but it is critical to the Feynman diagram interpretation that not all horizontal trajectories enclose one of the punctures: this allows the existence of annular domains that correspond to the propagator/plumbing region.</p>
+
+<p><a id="fig-strebel"></a></p>
+
+<p><img src="/assets/img/strebel.svg" alt="Strebel figure" /></p>
+
+<p><em>Left: The horizontal foliation induced by the Strebel differential on the disc for three vertices. Right: A very approximate sketch of the Strebel differential foliation for four punctures in pairs. This is for the s-channel plumbing of (1,2) and (3,4). The local foliation around each puncture is separated by a propagator region where foliations do not encircle a specific puncture. Due to the difficulty of drawing this figure in TikZ, there are certain regions of foliation that are missing. However, there is hopefully enough information in this figure for the reader to fill in the details.</em></p>
+
+<p>The foliation by horizontal trajectories for the three-vertex is just the mapping of the Cauchy slices of radial quantization to the three discs defining the cubic vertex, as shown on the left-hand side of <a href="#fig-strebel">the above figure</a>. For the four-vertex, there is no analytic form of the expression, but one can visualize the approximate form on the right-hand side of <a href="#fig-strebel">the above figure</a>.</p>
+
+<p>There is a better visualization—one that can be written explicitly—in the frame induced by the differential. The flat frame induced by the Jenkins–Strebel differential exactly gives the decomposition of a general genus-$g$ Riemann surface into Feynman graphs defined by plumbing. Define the coordinate $w_i$ such that $w_i=0$ is the location of the $i$th vertex operator and</p>
+
+\[\begin{align}
+d x_i &amp;\equiv \sqrt{\varphi(z)}\,dz,\\
+\log w_i &amp;\equiv x_i.
+\end{align}\]
+
+<p>In the $x_i$ coordinate patch, horizontal trajectories around $z_i$ are horizontal lines (i.e. constant real part) of length $\pi$, with the vertex operators lying at $x_i=-\infty$. The zeroes of the Strebel differential are by convention chosen to lie at $x_i=0$. The gluing of the Strebel differential in this picture is performed under the identification $x_i=-x_j$.</p>
+
+<p><a id="fig-strebel-strip"></a></p>
+
+<p><img src="/assets/img/strebel_strip.svg" alt="Strebel strip figure" /></p>
+
+<p><em>The foliation of the three-point vertex, corresponding to the left hand side of <a href="#fig-strebel">this figure</a>. The three semi-infinite strips represent external states, glued together with a total defect angle of $3\pi$. The jagged line represents a cut, so that the strips can be extended to $-\infty$. At the boundaries, the gluing is performed via the identification $x_i=-x_j$.</em></p>
+
+<p><a id="fig-schannel"></a></p>
+
+<p><img src="/assets/img/schannel.svg" alt="schannel figure" /></p>
+
+<p><em>The plumbing construction of the s-channel four-point vertex, described as the gluing of four semi-infinite strips with one strip of variable length $t$, with the length of the intermediate strip correpsonding to the plumbing parameter. Intuitively, once the strips are glued together, one gets an $s$-channel Feynman diagram structure like shown below the five strips.</em></p>
+
+<p>With this construction, the degeneration of the amplitude into cubic plumbing regions is completely manifest. For example, the s-channel of the 4-point amplitude is constructed in <a href="#fig-schannel">the above figure</a>. Because of the mathematical construction of the Jenkins-Strebel differential, one knows that between the s-channel and t-channel, every four-punctured Riemann surface is in one-to-one correspondence with a cubic plumbed diagram.</p>
+
+<p>One might wonder why the decomposition of the surface via the Strebel differential does not give a plumbing prescription for the <em>closed</em> bosonic string field theory. The essential reason is that while one does have a unique Strebel differential, there is no preferred way to decompose the surface into a <em>Jenkins</em>–Strebel differential which would allow annular domain corresponding to a propagator. In other words, one cannot obtain a propagator from the Strebel differential alone (at least in the usual formulation of string field theory).</p>
+
+<h3 id="equations-of-motion-and-star-product">Equations of motion and star product</h3>
+
+<p>The equation of motion can be obtained as</p>
+
+\[\begin{align}
+\delta_\Psi S[\Psi]
+&amp;=\frac{1}{2}\langle\!\langle \delta \Psi \lvert Q_B \rvert \Psi\rangle
+ +\frac{1}{2}\langle\!\langle \Psi \lvert Q_B \rvert \delta \Psi\rangle
+ +\{\delta \Psi \otimes \Psi \otimes \Psi\}\\
+&amp;=\langle\!\langle \delta \Psi \lvert Q_B \rvert \Psi\rangle
+ +\{\delta \Psi \otimes \Psi \otimes \Psi\}\\
+&amp;\implies \frac{\delta S[\Psi]}{\delta \Psi}
+=Q_B\lvert\Psi\rangle+[\Psi\otimes \Psi].
+\end{align}\]
+
+<p>In the first line we used the invariance of ${\cdot}$ under cyclic permutations, while in the second line the $Q_B$ half-contour was deformed across the disc to enclose $\delta \Psi$ and an overall inversion map on the second term was applied (two minus signs cancel: one from reversing the orientation of $Q_B$ to enclose $I\circ \Psi$, and one from moving $Q_B$ past the inversion map. One must also use that $\Psi$ is Grassmann-odd). $[\Psi_1\otimes \Psi_2]$ is defined through its inner product with an arbitrary state $\chi$ as</p>
+
+\[\begin{align}
+\langle \chi \lvert[\Psi_1 \otimes \Psi_2]\rangle
+&amp;\equiv \{\chi\otimes \Psi_1\otimes \Psi_2\}.
+\end{align}\]
+
+<p>Notationally, the $[\cdot]$ operation is usually labeled as the star product,</p>
+
+\[\begin{align}
+\lbrack\Psi_1\otimes \Psi_2\rbrack &amp;\equiv \Psi_1 * \Psi_2.
+\end{align}\]
+
+<p>The notation suggests the star product is associative, which it in fact is. This isn’t too difficult to demonstrate, but we will first give a more general formalism that will be useful in the next section.</p>
+
+<p><a id="fig-half-disc"></a></p>
+
+<p><img src="/assets/img/half_disc.svg" alt="half disc figure" /></p>
+
+<p><em>The plumbing construction of the s-channel four-point vertex, described as the gluing of four semi-infinite strips with one strip of variable length $t$, with the length of the intermediate strip correpsonding to the plumbing parameter. Intuitively, once the strips are glued together, one gets an $s$-channel Feynman diagram structure like shown below the five strips.</em></p>
+
+<p>Recall that the action of a finite holomorphic function $f(z)$ on an operator is
+$[\Psi]^f=(f’(z))^d\Psi(f(z))=U_f\,\Psi\,U_f^{-1}\equiv U_f\cdot \Psi$,
+where $U_f$ is an exponentiation of the Virasoro algebra.</p>
+
+<p><a id="eq-Uf"></a>
+\(\begin{align}
+U_f
+&amp;=\exp\left[\oint \frac{dz}{2\pi i}v(z)\,T(z)\right]
+= e^{\sum_n v_n L_n}.
+\label{eq:Uf}
+\end{align}\)</p>
+
+<p><a id="fig-three-discs"></a></p>
+
+<p><img src="/assets/img/three_discs.svg" alt="three discs figure" /></p>
+
+<p><em>The Riemann surface that corresponds to the correlation function $\langle \chi\rvert\Psi_{1}*\Psi_{2}\rangle$. Identified edges are glued via $w\mapsto -w$. The point denoted by the blue dash indicates the center of the Riemann surface with defect angle $3\pi$. This is essentially the disc frame of <a href="#fig-strebel-strip">this previous figure</a></em></p>
+
+<p>The BPZ inner-product on the disc is shown in Figure XYZ. Unlike global conformal transformations which leave the vacuum $\lvert\Omega\rangle$, the general action of $U_f$ on the vacuum is to transform the correlator to a different Riemann surface, where the map $f: D^2\to \Sigma$ is single-valued. Explicitly, the star product can be represented as the correlator</p>
+
+\[\begin{align}
+&amp;\langle \Omega\rvert_{D^2}\,(U_{f_1}\cdot \chi)\,(U_{f_2}\cdot \Psi_1)\,(U_{f_3}\cdot \Psi_2)\,\lvert\Omega\rangle_{D^2}\\
+=&amp;\langle \Omega\rvert_{D^2}\,U_{f_1}\,\chi\,(U_{2\pi/3}\cdot \Psi_1)\,(U_{4\pi/3}\cdot \Psi_2)\,U_{f_1^{-1}}\,\lvert\Omega\rangle_{D^2}\\
+=&amp;\langle \Omega\rvert_{\Sigma}\,(\chi)\,(U_{\pi}\cdot \Psi_1)\,(U_{2\pi}\cdot \Psi_2)\,\lvert\Omega\rangle_{\Sigma},
+\end{align}\]
+
+<p>where $U_{2\pi/3}$ represents rotation on $D^2$ by $2\pi/3$, and similarly for $U_{4\pi/3}$. As usual, $U\cdot \Psi$ represents the exponentiation of the charge whose contour integral encloses the operator $\Psi$. Equivalently, this is $U\Psi U^{-1}$. All operators are implicitly inserted at $z=1$. This is a rather trivial demonstration, but the understanding that coordinate transformations $f$ applied to operators can be viewed equivalently as mapping between Riemann surfaces by $f^{-1}$ is essential to the entire construction of the tachyon condensation solution.</p>
+
+<p>$\Sigma$ is the Riemann surface formed from gluing three half-discs together, as shown in <a href="#fig-three-discs">this figure</a>. It is clear from this construction that the $*$-product is associative, as $\Psi_1*\Psi_2\mapsto \Psi_1*\Psi_2*\Psi_3$ just represents gluing another half disc on the right. In words therefore, each star product represents gluing another half-disc to the Riemann surface the correlation function is originally defined on.</p>
+
+<p><a id="fig-inversion"></a></p>
+
+<p><img src="/assets/img/inversion.svg" alt="inversion figure" /></p>
+
+<p><em>Extending the local coordinate system of $\Psi_1$, demonstrating how $\Psi_2$ appears as $I\circ \Psi_2$ in the extended local coordinate system of $\Psi_1$. The arrows represent the gluing of the disc to the half-disc.</em></p>
+
+<p>At the level of coordinates, the gluing procedure means that the left edge of $\Psi_1$ is glued to the right edge of $\Psi_2$ using the formula $w\mapsto -w$. In a global coordinate system including $\Psi_1, \Psi_2$, with $\Psi_1$ at the origin, the correlator would be represented as $\langle \cdots \Psi_1\, I\circ \Psi_2 \cdots \rangle$ (with appropriate gluing of $\Psi_3$). Consequently, in coordinate systems where a given operator $\Psi_1$ is at the origin, adjacent operators in the star product $\Psi_0,\Psi_2$ when written in the same coordinate system appear as $I\circ \Psi_0,\, I\circ \Psi_2$ (although only one can be extended to the same local coordinate system as $\Psi_1$ at a time). This is represented visually in <a href="#fig-inversion">the above figure</a>.</p>
+
+<h2 id="tachyon-condensation">Tachyon condensation</h2>
+
+<h3 id="wedge-states">Wedge states</h3>
+
+<p>One can consider more general states $\Omega_\alpha$ that insert wedges of angle $\alpha$ under the star product. Explicitly, one defines $\Omega_\alpha$ through the following action:</p>
+
+\[\begin{align}
+\langle\Omega_\alpha\rvert &amp;\equiv \langle \Omega\rvert\,U_{f_\alpha},\\
+f_{\alpha} &amp;\equiv h \circ z^{\frac{2}{1+\alpha}} \circ h^{-1}.
+\label{eq:falpha}
+\end{align}\]
+
+<p>where $h$ maps the UHP to the unit disc, while mapping the UHP disc to the right half of the disc. In other words, $\Omega_\alpha$ shrinks a half-disc of angle $\pi$ (with various operator insertions) to one of angle $\pi\alpha$. One then observes that</p>
+
+\[\begin{align}
+\langle\!\langle \Omega_\alpha \lvert \Psi\rangle
+= \langle \Psi\rangle_{\Sigma},
+\end{align}\]
+
+<p>where $\Sigma$ is obtained by gluing the half-disc which $\Psi$ is present on to a wedge of angle $\pi\alpha$. Note that $\Omega_\alpha$, the operator corresponding to the state $\lvert\Omega_\alpha\rangle$, is represented by $U_{f_\alpha}^\dagger$, where $\dagger$ represents BPZ conjugation of the operator.</p>
+
+<p><a id="fig-wedgeDef"></a></p>
+
+<p><img src="/assets/img/wedgeDef.svg" alt="wedgeDef figure" /></p>
+
+<p><em>The correlation function corresponding to  $\langle \chi\lvert\Omega_\alpha*\Psi_1\rangle$.</em></p>
+
+<p>One might wonder why we defined $\langle \Omega_\alpha\rvert$ as $\langle \Omega\rvert U_{f_\alpha}$ and not $\langle \Omega\rvert U_{f_\alpha}^\dagger$. The reason is more or less that with respect to the star product, adjacent operators appear as BPZ conjugates when extending the local coordinate system of a given operator. What this means is that if we compute $\Omega_\alpha * \Psi$, in the local coordinate system of $\Psi$, this factor appears as $I\circ \Omega_\alpha(0)\,\Psi(0)$, which is equal to $U_{f_\alpha}\Psi(0)$ (see, e.g., <a href="#fig-inversion">this figure</a>, as well as <a href="#fig-wedgeDef">this figure</a>).</p>
+
+<p>Since the action of $\Omega_{\alpha}$ is to glue a wedge of angle $\pi\alpha$ to the pre-existing correlation function, one manifestly sees that on the wedge states, the star product is associative: $\Omega_\alpha * \Omega_\beta=\Omega_{\alpha+\beta}$.</p>
+
+<h3 id="explicit-formulae">Explicit formulae</h3>
+
+<p>The following section deals with some explicit mathematical formulae that have been useful historically in verifying the consistency of the tachyon condensate solution we will construct. Specifically, one might worry about the presence of divergences in the definition of the identity wedge state that lead to undefined expressions. These are technicalities and don’t play an essential role in the construction of the tachyon condensate solution. This section may be skipped for readers not interested in such details.</p>
+
+<p>One can compute explicit formulae for the wedge states, viewed as linear combinations of descendants of the identity operator. In other words, we wish to determine the explicit coefficients in equation $\eqref{eq:Uf}$. In order to find the explicit coefficients, we will first find a formula for $\operatorname{ad}_{\sum v_n L_n}^k \Psi(z)$, $k\in \mathbb{N}$, for primary $\Psi$. Then, one can use that</p>
+
+\[\begin{align}
+U_f\cdot \Psi(z) &amp;= e^{\operatorname{ad}_{\sum_n v_n L_n}}\Psi(z).
+\end{align}\]
+
+<p>For $k=1$, using that $[L_m,\Psi_n]=[(d-1)m-n]\Psi_{m+n}$, with the expansion $\Psi=\sum_n \frac{\Psi_n}{z^{n+d}}$, one can compute</p>
+
+\[\begin{align}
+\sum_{n,m} \frac{v_n}{z^{m+d}}[L_n,\Psi_m]
+&amp;=\sum_{n,m}\frac{v_n}{z^{m+d}}[(d-1)n-m]\Psi_{n+m}\\
+&amp;=\sum_{n,m} \frac{v_n}{z^{m+d}}[dn-(m+n)]\Psi_{n+m}\\
+&amp;=\sum_{n,p}\frac{v_n}{z^{p-n}}[dn-p]\Psi_p\\
+&amp;=d\,v'(z)\Psi(z)+v(z)\partial_z\Psi(z).
+\end{align}\]
+
+<p>Consequently,</p>
+
+\[\begin{align}
+\left(\operatorname{ad}_{\sum_n v_n L_n}\right)^k\Psi(z)
+&amp;=\left(v(z)\partial_z+d\,v'(z)\right)^k\Psi(z)
+\end{align}\]
+
+<p>for positive integer $k$ and $\Psi$ of weight $d$. An explicit formula for the exponentiation then follows from this:</p>
+
+\[\begin{align}
+U_f\circ \Psi(z)=[f'(z)]^d \Psi(f(z))
+&amp;=e^{v(z)\partial_z+d\,v'(z)}\Psi(z).
+\end{align}\]
+
+<p>Here is the trick to find $v$ in terms of $f$. If we multiply the previous expression by $e^{-v(z)\partial_z}e^{v(z)\partial_z}$ on the RHS between $\Psi$ and $e$, and using the usual vector field identity $e^{v\partial_z}\Psi(z)=\Psi(e^{v(z)\partial_z}z)$, then one can see that if the equation is to hold for arbitrary $d$, then</p>
+
+\[\begin{align}
+e^{v(z)\partial_z}z&amp;=f(z).
+\end{align}\]
+
+<p>It seems to me that there is probably a more elegant way to derive this equation, but nonetheless, this is the method of Schnabl’s paper on wedge states, which I am following.</p>
+
+<p>With this formula, one can recursively compute $v_n$ as follows. Presuming the composition $f\circ g$ is holomorphic, one has that $U_{f}U_g=U_{f\circ g}$, as has already been used. Then taking the split $f(0)=f’(0)\frac{f(z)}{f(0)}$, and since $f’(0)$ generates dilations, one gets that</p>
+
+\[\begin{align}
+e^{v_0}&amp;=f'(0),\\
+e^{\sum_{n\geq 1} v_n z^{n+1}\partial_z}\, z&amp;=\frac{f(z)}{f'(0)}.
+\end{align}\]
+
+<p>This formula can in turn be used to explicitly find the coefficients $v_n$ for the wedge states, by simply matching the $z$ powers on the left- and right-hand sides of the above formula, both Taylor-expanded around $z=0$. Denoting the exponent $\sum_{n\geq 1}v_n z^{n+1}\partial_z$ as $D$, the possible terms that appear at order $z^2$ first appear in $Dz$. But $f(z)$ is odd and so contains no terms of order $z^2$. This implies that $v_1=0$. The terms of the form $z^3$ appear in $Dz$ and $\frac{1}{2}D^2z$. Consequently, $Dz=v_2 z^3$. Taylor-expanding $f(z)/f’(0)$, where $f$ corresponds to $f_\alpha$ in equation $\eqref{eq:falpha}$, one gets that the coefficient of $L_{-2}$ is $\frac{4-(1+\alpha)^2}{3(1+\alpha)^2}$, such that</p>
+
+\[\begin{align}
+\lvert \Omega^\alpha\rangle
+&amp;=\exp\left(\frac{4-(1+\alpha)^2}{3(1+\alpha)^2}L_{-2}+\cdots\right).
+\label{eq:levelExpansion}
+\end{align}\]
+
+<p>Using computer algebra, this has been expanded to very high level in <code class="language-plaintext highlighter-rouge">hep-th/0201095</code> (see appendix B).</p>
+
+<h3 id="the-identity-operator">The identity operator</h3>
+
+<p>The operator $\Omega_0$ formally acts as the identity of the star product algebra: $\Omega_0* A=A$. From now on this operator will be denoted as $I$. There are various pathologies associated with $I$.</p>
+
+<p>For example, using without proof that $c_0(\Psi_1*\Psi_2)=(c_0\Psi_1)*\Psi_2+\Psi_1*(c_0\Psi_2)$, one has that
+$c_0\Psi=c_0(I*\Psi)=(c_0I)*\Psi+I*(c_0\Psi)=(c_0I)*\Psi+c_0\Psi$.
+If one then takes $\Psi=I$, then this implies that $c_0\lvert I\rangle=0$. However, one can manifestly check that this isn’t the case by computing, similarly to above, the explicit formula for $c_0\lvert I\rangle$ in terms of a level expansion. This would seem to imply that this state is not equal to zero. My point here is not to endeavour to explain in detail the resolution to this problem (the details are in Schnabl’s paper on wedge states. The resolution essentially is that $c_0\lvert I\rangle$ is ill-defined in a level expansion).</p>
+
+<p>There are other issues with the identity operator. If one extends the level expansion of $\lvert\Omega^\alpha\rangle$ in equation $\eqref{eq:levelExpansion}$, there seem to be no divergences for the first 20 terms. But remarkably, after that, the coefficients start diverging (see figure 3 of <code class="language-plaintext highlighter-rouge">hep-th/0201095</code>)! It turns out however that this divergence can be accounted for by reorganizing the perturbative series. The following expression for $I$, which I present without proof, is well-defined and converges:</p>
+
+\[\begin{align}
+\lvert I\rangle
+&amp;=\left(\prod_{n=2}^\infty e^{-\frac{1}{2^{n-1}}L_{-2^n}}\right)e^{L_{-2}}\lvert 0\rangle.
+\end{align}\]
+
+<p>The moral of this section and the preceding one is that to really double check that the tachyon condensate solution is well-defined, a lot of messy level-expansion algebra is needed. However, if one trusts that the wedge algebra (and its integrals and derivatives) are always well-defined, then there is no need to worry about this. For the rest of this paper, we will take the latter view (since the preceding math isn’t important to the main result, I didn’t take too much care to write down all derivations in this paper).</p>
+
+<h3 id="sliver-frame">Sliver frame</h3>
+
+<p>Instead of dealing with the algebra of wedge states on the disc, it will be more convenient to view the action of the wedge states in the “sliver” frame. The sliver map is defined to take the upper half unit-disc (where the real axis is the boundary) to the strip of width $1$ centered at the imaginary axis. Explicitly,</p>
+
+\[\begin{align}
+s(z)&amp;\equiv \frac{2}{\pi}\arctan(z).
+\end{align}\]
+
+<p><a id="fig-sliver"></a></p>
+
+<p><img src="/assets/img/sliver.svg" alt="sliver figure" /></p>
+
+<p><em>The action of wedge states in sliver frame is to insert an infinite strip (in the doubling picture) of width $\alpha$ on the periodically identified cylinder (or torus, in the doubling picture). The width of the sliver frame, as mapped from the disc, is $1$.</em></p>
+
+<p>Recall that the action of $\Omega_\alpha$ was defined as the action of $f_{\alpha}=h\circ z^{\frac{2}{1+\alpha}}\circ h^{-1}$. In the sliver frame, $\Omega_\alpha$ can be defined alternatively as $f_\alpha=s\circ z^{\frac{2}{1+\alpha}}\circ s^{-1}$. Intuitively, the action of $\Omega_\alpha$ in the sliver frame is to add a strip of width $\alpha$. The action of the sliver frame is demonstrated in <a href="#fig-sliver">the above figure</a>.</p>
+
+<h3 id="kbc-algebra">$KBC$ algebra</h3>
+
+<p>In this section, any operations will be taken implicitly with respect to the star product. That is, $ab$ is implicitly $a*b$.</p>
+
+<p>Because the star product is associative, one can define derivatives with respect to the star product. It will be useful to define</p>
+
+\[\begin{align}
+\lvert K\rangle &amp;\equiv -\frac{d}{d\alpha}\Omega_\alpha\bigg\rvert_{\alpha=0}\lvert I\rangle.
+\end{align}\]
+
+<p>In the sliver frame, $K$ can be viewed as (negative) the generator of increasing the width of the Riemann surface. Taking the generator to be a contour integral around the border of the Riemann surface with width $\epsilon$ and conformal Killing vector $v(u)=\theta\!\left(\frac{1}{2}\epsilon+u\right)$, one gets a neat expression for $K$ (the cancellation of the minus sign comes from the transformation viewed as passive vs. active):</p>
+
+\[\begin{align}
+K
+&amp;=\oint_C \frac{1}{2\pi i}v(z)\,T(z)\\
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz}{2\pi i}\bigl(v(z+\epsilon)-v_-(z)\bigr)T(z)\\
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz}{2\pi i}\,T(z).
+\end{align}\]
+
+<p>One can similarly define the insertion of a $b$-ghost, as</p>
+
+\[\begin{align}
+\lvert B\rangle
+&amp;=\oint_C \frac{dz}{2\pi i}v(z)\,b(z)\lvert I\rangle\\
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz}{2\pi i}\,b(z)\lvert I\rangle.
+\end{align}\]
+
+<p>Likewise, we can define</p>
+
+\[\begin{align}
+\lvert C\rangle &amp;= c(0)\lvert I\rangle,
+\end{align}\]
+
+<p>where $c(0)$ sits at the origin of the infinitesimal strip that $I$ is. In words, $C$ glues the $c$-ghost to the edge of any operator it is multiplied with in the star product. As an example, this implies that $\langle \chi\lvert C*\Psi\rangle=\langle I\circ\chi(\pi)\,c(-\frac{\pi}{2})\,\Psi(0)\rangle$ (in the disc frame).</p>
+
+<p>The $K,B,C$ states form the so-called $KBC$-algebra, from which I claim—and will prove—that the tachyon condensate vacuum takes the form</p>
+
+<p><a id="eq-tachyonVacuum"></a></p>
+
+\[\begin{align}
+\Psi_{tv} &amp;=(C+CKBC)(I+K)^{-1}.
+\label{eq:tachyonVacuum}
+\end{align}\]
+
+<p>where $(I+K)^{-1}$ is defined as the inverse with respect to the star product. More explicitly,</p>
+
+<p><a id="eq-inverse"></a></p>
+
+\[\begin{align}
+(I+K)^{-1} &amp;=\int_0^\infty e^{-\alpha}\,\Omega^\alpha.
+\label{eq:inverse}
+\end{align}\]
+
+<p>with the identification $\Omega_\alpha=e^{-\alpha K}$ and all operations (including exponentiation) are yet again defined with respect to the star product.</p>
+
+<p>As a very basic consistency check, one sees that $\Psi_{tv}$ is Grassmann-odd, as is required of physical string states. Additionally, it has ghost number $1$, as is required for string states at tree-level.</p>
+
+<p>(I wish I could justify in greater detail these statements of <em>why</em> $B$ and $C$ are constructed in this way to form the tachyon condensate solution. As far as I understand it, Schnabl et al. essentially stumbled on the solution of this form. It would be very interesting to develop intuition for the reason behind the minimum taking this form.)</p>
+
+<p>In order to demonstrate that $\Psi_{tv}$ is a genuine solution of the equations of motion, it is necessary to use various identities of the $KBC$ algebra. Using the anticommutativity of $b$, one has that</p>
+
+\[\begin{align}
+BB
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz\,dz'}{(2\pi i)^2}\,b(z)b(z')\\
+&amp;=-\int_{-i\infty}^{i\infty}\frac{dz'\,dz}{(2\pi i)^2}\,b(z')b(z)\\
+&amp;=-BB,
+\end{align}\]
+
+<p>and so $BB=0$. Similarly, $CC=0$. Because $Q_B b=T$ and $Q_BT=0$, one has that</p>
+
+\[\begin{align}
+Q_B B&amp;=K,\\
+Q_BK&amp;=0.
+\end{align}\]
+
+<p>Now, $Q_B C(0)=C\,\partial C$, and because $[K,C]=\partial C$ and $CC=0$, we have that</p>
+
+\[\begin{align}
+Q_B C=CKC.
+\end{align}\]
+
+<p>Lastly, one has other commutators inherited from OPEs. In particular,</p>
+
+\[\begin{align}
+[K,B]
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz\,dz'}{(2\pi i)^2}\,T(z)b(z')\\
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz}{2\pi i}\,\partial b(z)\\
+&amp;=0,\\[4pt]
+\{B,C\}
+&amp;=\int_{-i\infty}^{i\infty}\frac{dz}{2\pi i}\,\frac{1}{z}\\
+&amp;=I,
+\end{align}\]
+
+<p>where in going from the second to third line, it was used that $\partial b(z)$ is a total derivative. In the last line, one gets the star product identity operator and not the overall CFT identity operator because if inserted in a star product with other operators, ${B,C}$ does not change the correlation function.</p>
+
+<h3 id="computation-of-tachyon-vacuum">Computation of tachyon vacuum</h3>
+
+<p>The above identities are all we need to demonstrate that this solution satisfies the equation of motion.</p>
+
+<p>The first part of the equation of motion is (using the fact that $C,B$ are Grassmann odd)</p>
+
+\[\begin{align}
+Q_B \Psi_{tv}
+&amp;=(CKC+CKCKBC-CKKC+CKBCKC)(I+K)^{-1}.
+\end{align}\]
+
+<p>To simplify further, observe that</p>
+
+\[\begin{align}
+CKCKBC-CK^2C+CKBCKC
+&amp;=-CKBKC+CK\{C,B\}KC-CK^2C+CKBCKC\\
+&amp;=0.
+\end{align}\]
+
+<p>The first term is then reduced to</p>
+
+\[\begin{align}
+Q_B \Psi_{tv}&amp;=CKC(I+K)^{-1}.
+\end{align}\]
+
+<p>The second term is a bit more messy. First observe that $\Psi_{tv}$ can be rewritten as</p>
+
+\[\begin{align}
+\Psi_{tv}
+&amp;=C[I+KBC](I+K)^{-1}\\
+&amp;=C[BC-CB+KBC](I+K)^{-1}\\
+&amp;=C[BC+KBC](I+K)^{-1}\\
+&amp;=C[I+K]BC(I+K)^{-1}.
+\end{align}\]
+
+<p>Using this form, the second term in the equation of motion becomes</p>
+
+\[\begin{align}
+\Psi_{tv}^2
+&amp;=C[I+K]BC(I+K)^{-1}\,C[I+K]BC(I+K)^{-1}.
+\end{align}\]
+
+<p>Demonstrating that this cancels the first term amounts to showing that $C[I+K]BC(I+K)^{-1}C[I+K]BC=-CKC$:</p>
+
+\[\begin{align}
+&amp;C[I+K]BC(I+K)^{-1}C[I+K]BC\\
+&amp;=C(I+K)[-CB+\{B,C\}](I+K)^{-1}C(I+K)BC\\
+&amp;=C[I-(I+K)C(I+K)^{-1}]BC(I+K)BC\\
+&amp;=C[I-(I+K)C(I+K)^{-1}][-CB+\{B,C\}](I+K)BC\\
+&amp;=-C(I+K)C(I+K)^{-1}(I+K)BC\\
+&amp;=-C(I+K)CBC\\
+&amp;=-C(K)C[-CB+\{B,C\}]\\
+&amp;=-CKC,
+\end{align}\]
+
+<p>proving the identity.</p>
+
+<p>Now, we can prove the original conjecture, that the effective potential evaluated at this solution evaluates to precisely minus the energy of the D-brane (the energy of the D-brane is the volume times its tension).</p>
+
+<p>For a field configuration satisfying the equation of motion, the action simplifies to (with all multiplication as the star product)</p>
+
+\[\begin{align}
+S[\Psi_{tv}]
+&amp;=\left\langle\!\!\left\langle \Psi \,\middle\lvert\, \frac{1}{2}Q_B\Psi+\frac{1}{3}\Psi^2 \right\rangle\!\!\right\rangle\\
+&amp;=\frac{1}{6}\langle\!\langle \Psi \lvert Q_B\Psi\rangle\!\rangle.
+\end{align}\]
+
+<p>In terms of the star product, one has that for states $A,B$, $\langle\!\langle A\lvert B\rangle=\langle I\lvert AB\rangle$. As mentioned previously, in a local coordinate system around $B$, the operator $A$ is inserted as the BPZ conjugate.</p>
+
+<p>In sum, one has that the action is</p>
+
+\[\begin{align}
+S[\Psi_{tv}]
+&amp;=\frac{1}{6}\langle\!\langle I\lvert \Psi\, Q_B\Psi\rangle\!\rangle\\
+&amp;=\frac{1}{6}\langle\!\langle I\lvert C(I+K)^{-1}CKC(I+K)^{-1}\rangle\!\rangle
++\frac{1}{6}\langle\!\langle I\lvert CKBC(I+K)^{-1}CKC(I+K)^{-1}\rangle\!\rangle,
+\end{align}\]
+
+<p>where in the second line we split $\Psi_{tv}=(C+CKBC)(I+K)^{-1}$ into two terms.</p>
+
+<p>Observe that</p>
+
+\[\begin{align}
+Q_B\!\left(BC(I+K)^{-1}CKC\right)
+&amp;=KC(I+K)^{-1}CKC-BCKC(I+K)^{-1}CKC\\
+&amp;\quad+BC(I+K)^{-1}CKCKC-BC(I+K)^{-1}CKCKC\\
+&amp;=CBKC(I+K)^{-1}CKC,
+\end{align}\]
+
+<p>so the second term is $Q_B$-closed. The $Q_B$-contour encloses all the operator insertions, but on the disc one can deform the $Q_B$-contour to equivalently enclose nothing. Therefore, the second term vanishes. Recalling equation $\eqref{eq:inverse}$ for $(I+K)^{-1}$ as an integral of wedge states, as well as the formula for $K$ as a derivative of wedge states, the first term can be written as</p>
+
+\[\begin{align}
+\langle\!\langle I\lvert C(I+K)^{-1}CKC(I+K)^{-1}\rangle\!\rangle
+&amp;=-\int_0^\infty d\alpha_1\,d\alpha_3\,e^{-\alpha_1-\alpha_3}\,
+\partial_{\alpha_2}\bigg\rvert_{\alpha_2=0}\,
+\langle\!\langle I\lvert C\Omega^{\alpha_1}C\Omega^{\alpha_2}C\Omega^{\alpha_3}\rangle\!\rangle.
+\end{align}\]
+
+<p>Since under the star product in the disc frame, wedge states insert wedges of angle $\pi\alpha$ into correlation functions, the above equation is just the insertion of three $c$-ghosts on a Riemann surface, with the three ghosts separated by angles $\alpha_1,\alpha_2,$ and $\alpha_3$. In the conventions of section <code class="language-plaintext highlighter-rouge">Definition</code>, the $c$-ghost correlator on $D^2$ is normalized as</p>
+
+\[\begin{align}
+\langle c(z_1)c(z_2)c(z_3)\rangle&amp;=z_{12}z_{13}z_{23}.
+\end{align}\]
+
+<p>The transformation to a cylinder of length $L$ (i.e. the sliver frame with $L=\alpha_1+\alpha_2+\alpha_3$) is parameterized by the coordinate maps</p>
+
+\[\begin{align}
+z_i&amp;=e^{-i\frac{2\pi}{L}x_i},\qquad x_i=\{0,\alpha_1,\alpha_1+\alpha_2\}.
+\end{align}\]
+
+<p>With $c$ a weight $-1$ conformal primary, the correlation function becomes</p>
+
+\[\begin{align}
+\langle c(0)c(\alpha_1)c(\alpha_1+\alpha_2)\rangle_{\text{cyl}}
+&amp;=\left(-\frac{L}{2\pi i}\right)^3(z_1 z_2 z_3)^{-1}(z_{12}z_{13}z_{23})\\
+&amp;=\left(\frac{\alpha_1+\alpha_2+\alpha_3}{\pi}\right)^3\prod_{i=1}^3
+\sin\frac{\pi \alpha_i}{\alpha_1+\alpha_2+\alpha_3}.
+\end{align}\]
+
+<p>The integration and derivative become</p>
+
+\[\begin{align}
+&amp;-\int_0^\infty d\alpha_1\,d\alpha_3\,e^{-\alpha_1-\alpha_3}\,
+\partial_{\alpha_2}\bigg\rvert_{\alpha_2=0}
+\langle\!\langle I\lvert C\Omega^{\alpha_1}C\Omega^{\alpha_2}C\Omega^{\alpha_3}\rangle\!\rangle\\
+=\;&amp;-\int_0^\infty d\alpha_1\,d\alpha_3\,e^{-\alpha_1-\alpha_3}
+\left(\frac{\alpha_1+\alpha_3}{\pi}\right)^2
+\sin \frac{\pi\alpha_1}{\alpha_1+\alpha_3}.
+\end{align}\]
+
+<p>Defining</p>
+
+\[\begin{align}
+L&amp;\equiv \alpha_1+\alpha_3,\\
+t&amp;=\frac{\alpha_1}{\alpha_1+\alpha_3},
+\end{align}\]
+
+<p>the integral can be calculated as</p>
+
+\[\begin{align}
+&amp;-\int_0^\infty d\alpha_1\,d\alpha_3\,e^{-\alpha_1-\alpha_3}
+\left(\frac{\alpha_1+\alpha_3}{\pi}\right)^2
+\sin^2 \frac{\pi\alpha_1}{\alpha_1+\alpha_3}\\
+=\;&amp;-\frac{1}{\pi^2}\int_0^\infty dL\,dt\,e^{-L}L^3 \sin^2 (\pi t)\\
+=\;&amp;-\frac{1}{2\pi^2}\Gamma(4)\\
+=\;&amp;-\frac{3}{\pi^2}.
+\end{align}\]
+
+<p>Following the conventions of Xi’s string notes, the matter sector evaluates to</p>
+
+\[\begin{align}
+\langle 1\rangle_{m,D^2}&amp;=\frac{V_E}{g_0^2 \alpha'}.
+\end{align}\]
+
+<p>One can compute the D-brane tension using the low-energy Nambu–Goto action for the D-brane as in section 13.4 of <a href="https://github.com/xiyin137/stringbook/tree/main">Xi’s string notes</a>. The calculation will not be reproduced here, but the result is</p>
+
+\[\begin{align}
+T&amp;=\frac{1}{2\pi^2\alpha'g_0^2}.
+\end{align}\]
+
+<p>Plugging in the equation for tension to the action</p>
+
+\[\begin{align}
+S[\Psi_{tv}]&amp;=-V_E T.
+\end{align}\]
+
+<p>Constants are meaningless in QFT actions, but the important point is that $S[0]=0$, where $\Psi=0$ is our original vacuum. So $-V_ET$ represents the difference in effective potential between the starting and ending vacuums.</p>
+
+<h3 id="cohomology-around-vacuum">Cohomology around vacuum</h3>
+
+<p>There are various tests one can do to verify that there are no D-branes in the tachyon condensed vacuum. One nice thing we can only do with the analytic solution (i.e. this cannot be done in level truncation) is to verify that the $Q_B$-cohomology is trivial in the tachyon condensed vacuum. Expanding around $\Psi_{tv}$, the action is</p>
+
+\[\begin{align}
+S[\Psi_{tv}+\Psi]
+&amp;=\frac{1}{2}\langle\!\langle I\lvert \Psi_{tv}Q_B\Psi_{tv}\rangle\!\rangle
++\frac{1}{2}\langle\!\langle I\lvert \Psi Q_B \Psi_{tv}\rangle\!\rangle
++\frac{1}{2}\langle\!\langle I\lvert \Psi_{tv}Q_B\Psi\rangle\!\rangle\\
+&amp;\quad+\frac{1}{2}\langle\!\langle I\lvert \Psi Q_B \Psi\rangle\!\rangle
++\frac{1}{3}\langle\!\langle I\lvert \Psi_{tv}*\Psi_{tv}*\Psi_{tv}\rangle\!\rangle
++\langle\!\langle I\lvert \Psi*\Psi_{tv}*\Psi_{tv}\rangle\!\rangle\\
+&amp;\quad+\langle\!\langle I\lvert \Psi*\Psi*\Psi_{tv}\rangle\!\rangle
++\frac{1}{3}\langle\!\langle I\lvert \Psi*\Psi*\Psi\rangle\!\rangle.
+\end{align}\]
+
+<p>Noting that $\langle\!\langle I\lvert \Psi Q_B\Psi_{tv}\rangle=\langle\!\langle I\lvert \Psi_{tv}Q_B \Psi\rangle$ (as before, by deforming the $Q_B$-contour and changing its direction, along with taking into account that all operators are Grassmann odd), one has that</p>
+
+\[\begin{align}
+\langle\!\langle I\lvert \Psi(Q_B\Psi_{tv}+\Psi_{tv}*\Psi_{tv})\rangle\!\rangle=0,
+\end{align}\]
+
+<p>as $\Psi_{tv}$ satisfies the equations of motion.</p>
+
+<p>If one defines</p>
+
+\[\begin{align}
+Q_{B,\Psi}\equiv Q_B+\lbrack \Psi,\cdot \rbrack,
+\end{align}\]
+
+<p>then the action becomes</p>
+
+\[\begin{align}
+S[\Psi]
+&amp;=\langle\!\langle I\lvert \Psi\, Q_{B,\Psi_{tv}}\Psi\rangle\!\rangle
++\langle\!\langle I\lvert \Psi*\Psi*\Psi\rangle\!\rangle
+-V_ET.
+\end{align}\]
+
+<p>If an operator $A$ exists such that $Q_{tv}A=I$, then for closed $\Psi$, $\Psi=Q_{tv}(A*\Psi)$, implying that the cohomology is trivial and there are no open strings around the tachyon condensed vacuum. Satisfyingly, $A$ exists:</p>
+
+\[\begin{align}
+&amp;Q_{tv}(B(I+K)^{-1})\\
+=\;&amp;I-(I+K)^{-1}+\Psi_{tv}B(I+K)^{-1}+B(I+K)^{-1}\Psi_{tv}\\
+\Psi_{tv}B(I+K)^{-1}=\;&amp;(C+CKBC)(I+K)^{-1}B(I+K)^{-1}\\
+=\;&amp;(CB+CKB)(I+K)^{-2}\\
+=\;&amp;CB(I+K)^{-1}\\
+B(I+K)^{-1}\Psi_{tv}=\;&amp;B(I+K)^{-1}(C+CKBC)(I+K)^{-1}\\
+=\;&amp;(I+K)^{-1}(BC+KBC)(I+K)^{-1}\\
+=\;&amp;BC(I+K)^{-1}.
+\end{align}\]
+
+<h2 class="no_toc no-number" id="acknowledgments">Acknowledgments</h2>
+
+<p>I thank Xi Yin for teaching me much of the material present here throughout the semester as well as Yuchen Wang for additional lectures and commentary during sections. I also wish to thank Yutai Zhang for many helpful discussions.</p>]]></content><author><name></name></author><summary type="html"><![CDATA[]]></summary></entry></feed>

@@ -1,0 +1,11 @@
+title: Sam Christian
+description: personal website for Sam Christian
+url: "https://sam-2727.github.io"
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+# Plugins
+plugins:
+  - jekyll-feed

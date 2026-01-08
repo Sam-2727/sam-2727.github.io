@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    
+    <!-- MathJax for LaTeX with equation numbering and references -->
+    <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        tags: 'ams',
+        tagSide: 'right',
+        tagIndent: '0.8em',
+        multlineWidth: '85%',
+        useLabelIds: true
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+</head>
+<body>
+    <nav>
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <a href="{{ '/blog' | relative_url }}">Blog</a>
+    </nav>
+    
+    <main>
+        {{ content }}
+    </main>
+    
+    <footer>
+        <p>
+            © {{ 'now' | date: "%Y" }} {{ site.title }} • 
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="license">CC BY 4.0</a>
+        </p>
+    </footer>
+    
+    <!-- Load JavaScript files -->
+    <script src="{{ '/assets/js/section-refs.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/equation-preview.js' | relative_url }}"></script>
+</body>
+</html>
