@@ -32,6 +32,7 @@ nav a:hover {
 
 main {
     min-height: 60vh;
+    counter-reset: section subsection subsubsection;
 }
 
 h1 {
@@ -40,8 +41,7 @@ h1 {
 }
 
 h2 {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin: 30px 0 10px;
 }
 
 p {
@@ -69,8 +69,7 @@ time {
 }
 
 .post-list h2 {
-    margin-top: 0;
-    margin-bottom: 6px;
+    margin: 0 0 6px;
     font-size: 1.6em;
 }
 
@@ -78,7 +77,6 @@ time {
     display: block;
     margin-bottom: 10px;
     color: #777;
-    font-size: 0.9em;
 }
 
 .post-excerpt {
@@ -103,7 +101,6 @@ footer {
     font-size: 0.9em;
 }
 
-/* Code blocks */
 pre {
     background: #f5f5f5;
     padding: 15px;
@@ -123,34 +120,23 @@ pre code {
     padding: 0;
 }
 
-/* ===== AUTOMATIC SECTION NUMBERING ===== */
-
-/* Reset counter at the start of main content */
-main {
-    counter-reset: section subsection subsubsection;
-}
-
-/* Section (h2) numbering */
 main h2::before {
     counter-increment: section;
     content: counter(section) ". ";
     counter-reset: subsection;
 }
 
-/* Subsection (h3) numbering */
 main h3::before {
     counter-increment: subsection;
     content: counter(section) "." counter(subsection) ". ";
     counter-reset: subsubsection;
 }
 
-/* Subsubsection (h4) numbering */
 main h4::before {
     counter-increment: subsubsection;
     content: counter(section) "." counter(subsection) "." counter(subsubsection) ". ";
 }
 
-/* Optional: Style the numbers */
 main h2::before,
 main h3::before,
 main h4::before {
@@ -164,9 +150,6 @@ main h4.no-number::before {
     counter-increment: none;
 }
 
-/* ===== TABLE OF CONTENTS STYLING ===== */
-
-/* TOC container */
 #markdown-toc {
     background: #f8f9fa;
     border: 1px solid #e1e4e8;
@@ -174,46 +157,39 @@ main h4.no-number::before {
     padding: 20px 30px;
     margin: 30px 0;
     line-height: 1.8;
-    position: relative;  /* ADD THIS */
-    z-index: 1;          /* ADD THIS - keep it low */
+    position: relative;
+    z-index: 1;
+    counter-reset: toc-section;
 }
 
-/* FORCE remove all bullets and default list styling */
 #markdown-toc ul,
 #markdown-toc ol {
     list-style: none !important;
-    list-style-type: none !important;
-    padding-left: 0;
     margin: 0;
+    padding-left: 0;
 }
 
 #markdown-toc li {
-    margin: 8px 0;
     list-style: none !important;
-    list-style-type: none !important;
+    margin: 8px 0;
 }
 
-/* Remove any ::before or ::marker pseudo-elements */
 #markdown-toc li::before,
 #markdown-toc li::marker {
     content: none !important;
     display: none !important;
 }
 
-/* Indent subsections (h3) */
 #markdown-toc > li > ul {
     padding-left: 30px;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    margin: 8px 0;
 }
 
-/* Further indent sub-subsections (h4) */
 #markdown-toc > li > ul > li > ul {
     padding-left: 30px;
     margin-top: 5px;
 }
 
-/* TOC links */
 #markdown-toc a {
     text-decoration: none;
     color: #333;
@@ -227,16 +203,10 @@ main h4.no-number::before {
     text-decoration: underline;
 }
 
-/* Section numbers in TOC */
-#markdown-toc {
-    counter-reset: toc-section;
-}
-
 #markdown-toc > li {
     counter-reset: toc-subsection;
 }
 
-/* Main section numbers (1, 2, 3...) */
 #markdown-toc > li > a::before {
     counter-increment: toc-section;
     content: counter(toc-section) ". ";
@@ -245,7 +215,6 @@ main h4.no-number::before {
     font-weight: 500;
 }
 
-/* Subsection numbers (1.1, 1.2, 2.1...) */
 #markdown-toc > li > ul > li > a::before {
     counter-increment: toc-subsection;
     content: counter(toc-section) "." counter(toc-subsection) ". ";
@@ -254,7 +223,6 @@ main h4.no-number::before {
     font-weight: 400;
 }
 
-/* Sub-subsection numbers (1.1.1, 1.1.2...) */
 #markdown-toc > li > ul > li > ul {
     counter-reset: toc-subsubsection;
 }
@@ -267,12 +235,10 @@ main h4.no-number::before {
     font-weight: 400;
 }
 
-/* ===== EQUATION PREVIEW TOOLTIP ===== */
-
 #equation-tooltip {
     position: fixed;
     z-index: 99999;
-    background: #ffffff;
+    background: #686b87;
     border: none;
     border-radius: 8px;
     padding: 15px 20px;
@@ -283,7 +249,6 @@ main h4.no-number::before {
     color: #fff;
 }
 
-/* Ensure equation content matches tooltip text color */
 #equation-tooltip *,
 #equation-tooltip mjx-container,
 #equation-tooltip mjx-container * {
@@ -294,7 +259,6 @@ main h4.no-number::before {
     margin: 0 !important;
 }
 
-/* Make equation references slightly highlighted to show they're interactive */
 a[href^="#mjx-eqn"],
 a[href^="#eq:"] {
     color: #0066cc;
@@ -313,16 +277,13 @@ a[href^="#eq:"]:hover {
     border-radius: 2px;
 }
 
-/* Dark mode support (optional) */
 @media (prefers-color-scheme: dark) {
     #equation-tooltip {
-        background: #2d2d2d;
-        border-color: #4a9eff;
-        color: #e0e0e0;
+        background: #686b87;
+        color: #fff;
     }
 }
 
-/* Mobile: disable hover tooltips */
 @media (max-width: 768px) {
     #equation-tooltip {
         display: none !important;
