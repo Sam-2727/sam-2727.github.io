@@ -9,3 +9,11 @@ permalink: /blog/:year/:month/:day/:title/
 # Plugins
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Author
+author:
+  name: Sam Christian
+
+lang: en

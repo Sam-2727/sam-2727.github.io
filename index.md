@@ -1,11 +1,12 @@
 ---
 layout: default
 title: Home
+description: "Personal website of Sam Christian, a first year graduate student at Harvard studying physics."
 ---
 
 # Sam Christian
 
-I'm a graduate student studying physics at Harvard University. 
+I'm a first year graduate student studying physics at Harvard University. 
 
 I'm broadly interested in understanding quantum field theory, gravity, and string theory. Right now, I'm researching numerical aspects of string scattering amplitudes and the formalization of string theory as a quantum field theory ("string field theory"). I'm always trying to learn more about the (known aspects of) structure of string theory more generally.
 

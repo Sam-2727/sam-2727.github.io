@@ -2,6 +2,8 @@
 layout: post
 title: "Tachyon Condensation"
 date: 2026-01-02
+category: technical
+description: "Notes on tachyon condensation in string field theory."
 ---
 
 * TOC

@@ -84,6 +84,45 @@ time {
     line-height: 1.7;
 }
 
+.post-toggle {
+    display: flex;
+    gap: 0;
+    margin: 20px 0 10px;
+}
+
+.toggle-btn {
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.toggle-btn:first-child {
+    border-radius: 4px 0 0 4px;
+}
+
+.toggle-btn:last-child {
+    border-radius: 0 4px 4px 0;
+    border-left: none;
+}
+
+.toggle-btn.active {
+    background: #0066cc;
+    color: #fff;
+    border-color: #0066cc;
+}
+
+.toggle-btn:hover:not(.active) {
+    background: #f5f5f5;
+    color: #333;
+    border-color: #aaa;
+}
+
 .post-nav {
     display: flex;
     justify-content: space-between;
@@ -281,6 +320,23 @@ a[href^="#eq:"]:hover {
     #equation-tooltip {
         background: #686b87;
         color: #fff;
+    }
+
+    .toggle-btn {
+        border-color: #555;
+        color: #aaa;
+    }
+
+    .toggle-btn.active {
+        background: #0066cc;
+        color: #fff;
+        border-color: #0066cc;
+    }
+
+    .toggle-btn:hover:not(.active) {
+        background: #333;
+        color: #ddd;
+        border-color: #666;
     }
 }
 

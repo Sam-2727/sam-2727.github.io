@@ -29,6 +29,8 @@
     <script type="text/javascript" id="MathJax-script" async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
     </script>
+    {% seo %}
+    <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>
     <nav>
@@ -51,5 +53,6 @@
     <script src="{{ '/assets/js/section-refs.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/equation-preview.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/blog-filter.js' | relative_url }}"></script>
 </body>
 </html>
